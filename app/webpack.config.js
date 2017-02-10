@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProd ? 'source-map' : 'eval-source-map',
+  devtool: 'source-map',
   entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
     filename: 'bundle.[hash].js',
@@ -15,6 +15,10 @@ module.exports = {
   },
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.js$/,
+      loader: 'source-map-loader',
+    }, {
       test: /\.tsx?$/,
       loader: 'ts-loader',
       include: path.join(__dirname, 'src'),

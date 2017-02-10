@@ -1,0 +1,53 @@
+swagger: '2.0'
+info:
+  title: Test Server
+  description: A fake server spec
+  version: "1.0.0"
+host: localhost:8000
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /products:
+    get:
+      summary: Products
+      description: returns the products in the system
+      tags:
+        - Products
+      responses:
+        200:
+          description: An array of products
+          headers:
+            Access-Controll-Allow-Origin:
+              type: string
+              default: '*'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Product:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      description:
+        type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string

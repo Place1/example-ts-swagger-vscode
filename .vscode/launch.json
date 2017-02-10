@@ -1,0 +1,41 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "DevServer",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "runtimeArgs": [
+                "./node_modules/.bin/webpack-dev-server",
+                "--hot"
+            ],
+            "cwd": "${workspaceRoot}/app"
+        },
+        {
+            "name": "App",
+            "request": "launch",
+            "type": "chrome",
+            "runtimeArgs": [
+                "--disable-web-security",
+                "--disable-infobars"
+            ],
+            "userDataDir": "${workspaceRoot}/.vscode/chrome",
+            "url": "http://localhost:3000/webpack-dev-server/", 
+            "webRoot": "${workspaceRoot}/app",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///./*":   "${webRoot}/*"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "App + DevServer",
+            "configurations": [
+                "App",
+                "DevServer"
+            ]
+        }
+    ]
+}

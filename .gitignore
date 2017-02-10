@@ -1,2 +1,6 @@
 node_modules/
 dist/
+.vscode/chrome/
+server-stub/
+client-sdk/
+npm-debug.log
